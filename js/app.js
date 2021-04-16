@@ -7,90 +7,93 @@
   \***********************/
 /***/ (() => {
 
-function init() {
-  document.addEventListener('DOMContentLoaded', function () {
-    var el = document.querySelector('.modal');
-    mediaPlayer();
-    console.log(el); // Handler when the DOM is fully loaded
-  });
-}
+;
 
-function mediaPlayer() {
-  var media = document.querySelector('video');
-  var mediaTrigger = document.querySelector('.video-modal-trigger');
-  var mediaWrapper = document.querySelector('.video-showreel');
-
-  function appendElement() {
-    debugger;
-    var elem = document.querySelector('[data-showreel]');
-    elem.parentElement.removeChild(elem);
-    document.body.append(elem);
-  }
-
-  function inViewport(element) {
-    var bb = element.getBoundingClientRect();
-    return !(bb.top > innerHeight || bb.bottom < 0);
-  }
-
-  function showVideo() {
-    document.body.classList.add('play-showreel');
-    mediaWrapper.classList.add('show');
-    mediaWrapper.style.zIndex = 5;
-  }
-
-  function hideVideo() {
-    document.body.classList.remove('play-showreel');
-    mediaWrapper.classList.remove('show');
-    setTimeout(function () {
-      mediaWrapper.style.zIndex = 0;
-    }, 2000);
-  }
-
-  function playVideo() {
-    media.play();
-  }
-
-  function pauseVideo() {
-    media.pause();
-  }
-
-  function playPauseMedia(e) {
-    e.preventDefault();
-    console.log(media.paused);
-
-    if (media.paused) {
-      playVideo();
-    } else {
-      pauseVideo();
-    }
-  }
-
+(function () {
   function init() {
-    mediaTrigger.addEventListener('click', playPauseMedia);
+    document.addEventListener('DOMContentLoaded', function () {
+      var el = document.querySelector('.modal');
+      mediaPlayer();
+      console.log(el); // Handler when the DOM is fully loaded
+    });
+  }
 
-    if (media) {
-      document.addEventListener('scroll', function () {
-        if (!inViewport(media)) {
-          if (media.readyState >= 2 && !media.paused) {
-            pauseVideo();
-          }
-        }
-      });
+  function mediaPlayer() {
+    var media = document.querySelector('video');
+    var mediaTrigger = document.querySelector('.video-modal-trigger');
+    var mediaWrapper = document.querySelector('.video-showreel');
+
+    function appendElement() {
+      var elem = document.querySelector('[data-showreel]');
+      elem.parentElement.removeChild(elem);
+      document.body.append(elem);
     }
 
-    media.addEventListener('pause', function () {
-      hideVideo();
-    });
-    media.addEventListener('play', function () {
-      showVideo();
-    });
-    appendElement();
+    function inViewport(element) {
+      var bb = element.getBoundingClientRect();
+      return !(bb.top > innerHeight || bb.bottom < 0);
+    }
+
+    function showVideo() {
+      document.body.classList.add('play-showreel');
+      mediaWrapper.classList.add('show');
+      mediaWrapper.style.zIndex = 5;
+    }
+
+    function hideVideo() {
+      document.body.classList.remove('play-showreel');
+      mediaWrapper.classList.remove('show');
+      setTimeout(function () {
+        mediaWrapper.style.zIndex = 0;
+      }, 2000);
+    }
+
+    function playVideo() {
+      media.play();
+    }
+
+    function pauseVideo() {
+      media.pause();
+    }
+
+    function playPauseMedia(e) {
+      e.preventDefault();
+      console.log(media.paused);
+
+      if (media.paused) {
+        playVideo();
+      } else {
+        pauseVideo();
+      }
+    }
+
+    function init() {
+      mediaTrigger.addEventListener('click', playPauseMedia);
+
+      if (media) {
+        document.addEventListener('scroll', function () {
+          if (!inViewport(media)) {
+            if (media.readyState >= 2 && !media.paused) {
+              pauseVideo();
+            }
+          }
+        });
+      }
+
+      media.addEventListener('pause', function () {
+        hideVideo();
+      });
+      media.addEventListener('play', function () {
+        showVideo();
+      });
+      appendElement();
+    }
+
+    init();
   }
 
   init();
-}
-
-init();
+})();
 
 /***/ }),
 
