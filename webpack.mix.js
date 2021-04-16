@@ -7,3 +7,5 @@ mix.sass('src/sass/app.scss', 'css')
 mix.setPublicPath('public')
 
 mix.browserSync('pgp-new.test')
+
+mix.version()
