@@ -1,17 +1,13 @@
 ;(function () {
   function init() {
-    document.addEventListener('DOMContentLoaded', function () {
-      let el = document.querySelector('.modal')
-      mediaPlayer()
-      console.log(el)
-      // Handler when the DOM is fully loaded
-    })
+    mediaPlayer()
   }
 
   function mediaPlayer() {
     const media = document.querySelector('video')
     const mediaTrigger = document.querySelector('.video-modal-trigger')
     const mediaWrapper = document.querySelector('.video-showreel')
+    let timeout
 
     function appendElement() {
       let elem = document.querySelector('[data-showreel]')
@@ -25,16 +21,17 @@
     }
 
     function showVideo() {
+      clearTimeout(timeout)
+      mediaWrapper.style.zIndex = 5
       document.body.classList.add('play-showreel')
       mediaWrapper.classList.add('show')
-      mediaWrapper.style.zIndex = 5
     }
     function hideVideo() {
-      document.body.classList.remove('play-showreel')
-      mediaWrapper.classList.remove('show')
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         mediaWrapper.style.zIndex = 0
       }, 2000)
+      document.body.classList.remove('play-showreel')
+      mediaWrapper.classList.remove('show')
     }
 
     function playVideo() {
@@ -44,17 +41,11 @@
       media.pause()
     }
 
-    function playPauseMedia(e) {
-      e.preventDefault()
-      console.log(media.paused)
-      if (media.paused) {
-        playVideo()
-      } else {
-        pauseVideo()
-      }
-    }
     function init() {
-      mediaTrigger.addEventListener('click', playPauseMedia)
+      mediaTrigger.addEventListener('click', (e) => {
+        playVideo()
+        e.preventDefault()
+      })
       if (media) {
         document.addEventListener('scroll', () => {
           if (!inViewport(media)) {
@@ -78,5 +69,7 @@
     init()
   }
 
-  init()
+  document.addEventListener('DOMContentLoaded', function () {
+    init()
+  })
 })()
