@@ -10,7 +10,7 @@
     "watch-poll": "mix watch -- --watch-options-poll=1000",
     "hot": "mix watch --hot",
     "production": "mix --production",
-    "gh-pages": "git subtree push --prefix public origin gh-pages"
+    "gh-pages": "npm run production; git commit -m 'production build'; git subtree push --prefix public origin gh-pages"
   },
   "author": "",
   "license": "ISC",
