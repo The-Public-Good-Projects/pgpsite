@@ -3,6 +3,10 @@ h1,h2,h3,h4,h5 {
   font-weight: 300;
 }
 
+.text-purple {
+  color: #2C2CA8 !important;
+}
+
 .super {
   font-size: 44px !important;
 
@@ -15,6 +19,21 @@ h1,h2,h3,h4,h5 {
   @media only screen and (min-width: 1500px) {
     font-size: 120px !important;
   }
+}
+
+h2.super {
+  font-size: 31px !important;
+
+  @media only screen and (min-width: 600px) {
+    font-size: 5vw !important;
+  }
+  @media only screen and (min-width: 1200px) {
+    font-size: 5vw !important;
+  }
+  @media only screen and (min-width: 1500px) {
+    font-size: 80px !important;
+  }
+
 }
 
 
