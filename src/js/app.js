@@ -4,7 +4,7 @@
   }
 
   function mediaPlayer() {
-    const media = document.querySelector('video')
+    const media = document.querySelector('.video-showreel video')
     const mediaTrigger = document.querySelector('.video-modal-trigger')
     const mediaWrapper = document.querySelector('.video-showreel')
     let timeout
