@@ -1,8 +1,9 @@
+// testing
 ;(function () {
+  let state = 0
   function init() {
     mediaPlayer()
   }
-
   function mediaPlayer() {
     const media = document.querySelector('.video-showreel video')
     const mediaTrigger = document.querySelector('.video-modal-trigger')
